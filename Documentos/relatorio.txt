@@ -1,0 +1,26 @@
+Qual marca teve o maior volume de vendas?
+SELECT marca, MAX(vendas) FROM database_corrigido_2 a, database_corrigido b WHERE a.id_marca = b.Id_marca
+
+Qual veículo gerou a maior e menor receita?
+Maior receita:SELECT nome, SUM(valor_do_veiculo * vendas) as valor_total FROM database_corrigido b group by b.Nome ORDER BY valor_total DESC
+Mobi com 14747000
+
+Menor receita:SELECT nome, SUM(valor_do_veiculo * vendas) as valor_total FROM database_corrigido b group by b.Nome ORDER BY valor_total asc
+307 com 19000
+
+Qual a média de vendas do ano por marca?
+SELECT marca, AVG(vendas) AS media_vendas
+FROM database_corrigido a, database_corrigido_2 b WHERE a.Id_marca = b.Id_marca GROUP BY a.Id_marca;
+
+
+Quais marcas geraram uma receita maior com número menor de vendas?
+SELECT b.Marca, SUM(a.valor_do_veiculo) AS receita_total, SUM(vendas) as Vendas, SUM(a.valor_do_veiculo) / SUM(vendas) as media
+FROM database_corrigido a
+JOIN database_corrigido_2 b ON a.Id_marca = b.Id_marca
+GROUP BY b.Marca
+ORDER BY media DESC
+
+Subaru com uma média de 41346 por venda e totalizando 2150000
+
+Existe alguma relação entre os veículos mais vendidos?
+Os mais vendidos são do mesmo estilo de veículo: Hatch.
